@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>আমার বাংলাদেশ | প্রকৃতি ও তথ্য</title>
+
+  <meta name="description" content="বাংলাদেশের বিভাগ, জেলা, উপজেলা, গ্রাম, প্রকৃতি ও দর্শনীয় স্থান সম্পর্কে তথ্যভান্ডার।">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, "Noto Sans Bengali", sans-serif;
+      background: #f4f8f5;
+      color: #17351f;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #075e35, #0b8f50);
+      color: white;
+      padding: 16px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #b9ffd5;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+      font-size: 14px;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 470px;
+      padding: 70px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background:
+        linear-gradient(rgba(0,70,35,.70), rgba(0,70,35,.70)),
+        url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1600&q=80")
+        center/cover;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 28px;
+    }
+
+    .search-box {
+      max-width: 650px;
+      margin: auto;
+      display: flex;
+      background: white;
+      padding: 6px;
+      border-radius: 50px;
+    }
+
+    .search-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 14px 18px;
+      font-size: 16px;
+      border-radius: 50px;
+    }
+
+    .search-box button {
+      border: none;
+      background: #0a8f4c;
+      color: white;
+      padding: 0 24px;
+      border-radius: 50px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    /* Sections */
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 55px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .section-title h2 {
+      font-size: 30px;
+      color: #075e35;
+    }
+
+    .section-title p {
+      color: #66756b;
+      margin-top: 5px;
+    }
+
+    /* Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px 15px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,.08);
+      transition: .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card .icon {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      color: #075e35;
+      margin-bottom: 5px;
+    }
+
+    .card p {
+      color: #68766d;
+      font-size: 14px;
+    }
+
+    /* Nature */
+    .nature {
+      background: white;
+      max-width: none;
+    }
+
+    .nature-inner {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .nature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .nature-card {
+      overflow: hidden;
+      border-radius: 15px;
+      background: #f4f8f5;
+      box-shadow: 0 4px 15px rgba(0,0,0,.08);
+    }
+
+    .nature-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .nature-card div {
+      padding: 18px;
+    }
+
+    .nature-card h3 {
+      color: #075e35;
+      margin-bottom: 5px;
+    }
+
+    /* Explore */
+    .explore {
+      background: #e9f6ed;
+      max-width: none;
+    }
+
+    .explore-inner {
+      max-width: 1100px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 25px;
+      background: #08783f;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+    }
+
+    /* Footer */
+    footer {
+      background: #063a22;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    footer p {
+      margin: 5px 0;
+      color: #c5e4d0;
+      font-size: 14px;
+    }
+
+    /* Mobile */
+    @media (max-width: 800px) {
+
+      .nav {
+        flex-direction: column;
+      }
+
+      nav a {
+        margin: 0 6px;
+        font-size: 13px;
+      }
+
+      .hero {
+        min-height: 500px;
+        padding: 50px 15px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 450px) {
+
+      .logo {
+        font-size: 20px;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .search-box {
+        flex-direction: column;
+        background: transparent;
+        gap: 8px;
+      }
+
+      .search-box input {
+        width: 100%;
+      }
+
+      .search-box button {
+        height: 48px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .card {
+        padding: 18px 8px;
+      }
+
+      .card .icon {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav">
+
+      <div class="logo">
+        🇧🇩 আমার <span>বাংলাদেশ</span>
+      </div>
+
+      <nav>
+        <a href="#home">হোম</a>
+        <a href="#divisions">বিভাগ</a>
+        <a href="#nature">প্রকৃতি</a>
+        <a href="#about">আমাদের সম্পর্কে</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <div class="hero" id="home">
+
+    <div class="hero-content">
+
+      <h1>আমার বাংলাদেশ</h1>
+
+      <p>
+        বাংলাদেশের প্রকৃতি, মানুষ, গ্রাম, উপজেলা, জেলা ও
+        ঐতিহ্যের একটি সুন্দর তথ্যভান্ডার।
+      </p>
+
+      <div class="search-box">
+
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="জেলা, উপজেলা বা গ্রামের নাম লিখুন..."
+        >
+
+        <button onclick="searchPlace()">
+          🔎 খুঁজুন
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- DIVISIONS -->
+  <section id="divisions">
+
+    <div class="section-title">
+
+      <h2>বাংলাদেশের ৮ বিভাগ</h2>
+
+      <p>
+        বিভাগ থেকে শুরু করে জেলা ও উপজেলা সম্পর্কে জানুন
+      </p>
+
+    </div>
+
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="icon">🏙️</div>
+        <h3>ঢাকা বিভাগ</h3>
+        <p>ঢাকা ও আশেপাশের জেলা</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🌊</div>
+        <h3>চট্টগ্রাম বিভাগ</h3>
+        <p>পাহাড়, সমুদ্র ও উপকূল</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🌾</div>
+        <h3>রাজশাহী বিভাগ</h3>
+        <p>আম, কৃষি ও ঐতিহ্য</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🌿</div>
+        <h3>খুলনা বিভাগ</h3>
+        <p>সুন্দরবন ও উপকূল</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🌳</div>
+        <h3>বরিশাল বিভাগ</h3>
+        <p>নদী ও সবুজ প্রকৃতি</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🏞️</div>
+        <h3>সিলেট বিভাগ</h3>
+        <p>চা-বাগান ও পাহাড়</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🌱</div>
+        <h3>রংপুর বিভাগ</h3>
+        <p>কৃষি ও গ্রামীণ সৌন্দর্য</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🌄</div>
+        <h3>ময়মনসিংহ বিভাগ</h3>
+        <p>নদী, গ্রাম ও সবুজ প্রকৃতি</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- NATURE -->
+  <div class="nature" id="nature">
+
+    <div class="nature-inner">
+
+      <div class="section-title">
+
+        <h2>বাংলাদেশের প্রকৃতি</h2>
+
+        <p>
+          নদী, বন, পাহাড় ও গ্রামবাংলার সৌন্দর্য
+        </p>
+
+      </div>
+
+
+      <div class="nature-grid">
+
+        <div class="nature-card">
+
+          <img
+            src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=900&q=80"
+            alt="বাংলাদেশের সবুজ প্রকৃতি"
+          >
+
+          <div>
+            <h3>🌳 সবুজ বাংলাদেশ</h3>
+            <p>
+              বাংলাদেশের গ্রাম ও সবুজ প্রকৃতির অপরূপ সৌন্দর্য।
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="nature-card">
+
+          <img
+            src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=900&q=80"
+            alt="বন"
+          >
+
+          <div>
+            <h3>🌲 বন ও অরণ্য</h3>
+            <p>
+              বাংলাদেশের বন, বন্যপ্রাণী ও প্রাকৃতিক সম্পদ।
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="nature-card">
+
+          <img
+            src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=80"
+            alt="নদী ও প্রকৃতি"
+          >
+
+          <div>
+            <h3>🌊 নদী ও জলাভূমি</h3>
+            <p>
+              নদী, হাওর, বিল ও বাংলাদেশের জলজ প্রকৃতি।
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- EXPLORE -->
+  <div class="explore">
+
+    <div class="explore-inner">
+
+      <div class="section-title">
+
+        <h2>বাংলাদেশকে জানুন</h2>
+
+        <p>
+          ভবিষ্যতে এখানে ৬৪ জেলা, উপজেলা, ইউনিয়ন ও
+          গ্রামের বিস্তারিত তথ্য যুক্ত করা হবে।
+        </p>
+
+        <a class="btn" href="#divisions">
+          শুরু করুন →
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ABOUT -->
+  <section id="about">
+
+    <div class="section-title">
+
+      <h2>আমাদের উদ্দেশ্য</h2>
+
+      <p>
+        বাংলাদেশের প্রতিটি অঞ্চল ও প্রকৃতির তথ্য
+        এক জায়গায় তুলে ধরা।
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <h3>🇧🇩 আমার বাংলাদেশ</h3>
+
+    <p>
+      বাংলাদেশের প্রকৃতি ও তথ্যভান্ডার
+    </p>
+
+    <p>
+      © 2026 আমার বাংলাদেশ — All Rights Reserved
+    </p>
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+  <script>
+
+    function searchPlace() {
+
+      const input =
+        document.getElementById("searchInput").value.trim();
+
+      if (input === "") {
+
+        alert("দয়া করে কোনো জায়গার নাম লিখুন।");
+
+        return;
+      }
+
+      alert(
+        "🔎 আপনি খুঁজেছেন: " +
+        input +
+        "\n\nএই Search system-এ পরে বাংলাদেশের জেলা, উপজেলা, ইউনিয়ন ও গ্রামের সম্পূর্ণ তথ্য যুক্ত করা হবে।"
+      );
+    }
+
+  </script>
+
+</body>
+  </html>
